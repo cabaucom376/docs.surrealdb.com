@@ -62,8 +62,7 @@ const authentication = await db.query(
 " DEFINE ACCESS account ON DATABASE TYPE RECORD
 	SIGNUP ( CREATE user SET email = $email, pass = crypto::argon2::generate($pass) )
 	SIGNIN ( SELECT * FROM user WHERE email = $email AND crypto::argon2::compare(pass, $pass) )
-	DURATION FOR TOKEN 15m, FOR SESSION 12h "
-;
+	DURATION FOR TOKEN 15m, FOR SESSION 12h; "
 );
 ...
 ```
@@ -76,13 +75,16 @@ const authentication = await db.query(
 const authentication = await db.query(
 " DEFINE SCOPE user SESSION 24h
 	SIGNUP ( CREATE user SET email = $email, pass = crypto::argon2::generate($pass) )
-	SIGNIN ( SELECT * FROM user WHERE email = $email AND crypto::argon2::compare(pass, $pass) )
-; "
+	SIGNIN ( SELECT * FROM user WHERE email = $email AND crypto::argon2::compare(pass, $pass) ); "
 );
 ...
 ```
 </TabItem>
 </Tabs>
+
+> [!NOTE]
+> Depending on the connection protocol you choose, authentication tokens and sessions lifetime work differently. Refer to the [connection options](/docs/sdk/javascript/core/create-a-new-connection#connection-options) documentation for more information.
+
 
 ## User authentication
 
@@ -129,11 +131,20 @@ async db.signup({`{ namespace, database, [ scope | access ], [...] }`})
         </tr>
         <tr>
             <td colspan="2" scope="row" data-label="Arguments">
-                <code>access</code>
+                <code>access  </code>
                 <Label label="required" />
             </td>
             <td colspan="2" scope="row" data-label="Description">
                 The access to sign up to. Also pass any variables used in the access under the `variables` key. Only supported from SurrealDB 2.x onwards
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" scope="row" data-label="Arguments">
+                <code>variables</code>
+                <Label label="optional" />
+            </td>
+            <td colspan="2" scope="row" data-label="Description">
+                The variables to pass to the access definition
             </td>
         </tr>
     </tbody>
@@ -355,7 +366,7 @@ async db.signin({`{ ... }`})
 
 <Tabs groupId="signin-example">
 
-<TabItem value="V2" label="Root user" >
+<TabItem value="root" label="Root user" >
 ```ts
 // Authenticate with a root user
 const token = await db.signin({
@@ -365,7 +376,7 @@ const token = await db.signin({
 ```
 </TabItem>
 
-<TabItem value="V2" label="Namespace user" >
+<TabItem value="namespace" label="Namespace user" >
 ```ts
 // Authenticate with a Namespace user
 const token = await db.signin({
@@ -376,7 +387,7 @@ const token = await db.signin({
 ```
 </TabItem>
 
-<TabItem value="V2" label="Database user" >
+<TabItem value="database" label="Database user" >
 ```ts
 // Authenticate with a Database user
 const token = await db.signin({
@@ -387,7 +398,7 @@ const token = await db.signin({
 });
 ```
 </TabItem>
-<TabItem value="V2" label="Record Access" >
+<TabItem value="record" label="Record Access" >
 ```ts
 // Authenticate with Record Access
 const token = await db.signin({
@@ -403,7 +414,7 @@ const token = await db.signin({
 });
 ```
 </TabItem>
-<TabItem value="V1" label="Scopes" >
+<TabItem value="scope" label="Scopes" >
 ```ts
 // Authenticate with Scopes
 const token = await db.signin({
@@ -470,3 +481,7 @@ async db.authenticate(token)
 ```ts
 await db.authenticate('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJTdXJyZWFsREIiLCJpYXQiOjE1MTYyMzkwMjIsIm5iZiI6MTUxNjIzOTAyMiwiZXhwIjoxODM2NDM5MDIyLCJOUyI6InRlc3QiLCJEQiI6InRlc3QiLCJTQyI6InVzZXIiLCJJRCI6InVzZXI6dG9iaWUifQ.N22Gp9ze0rdR06McGj1G-h2vu6a6n9IVqUbMFJlOxxA');
 ```
+
+## Learn more
+
+Learn more about authentication in SurrealDB in our [security best practices](/docs/surrealdb/reference-guide/security-best-practices#authentication) documentation and in the [security](/docs/surrealdb/security/authentication#expiration) section of the SurrealDB documentation.  

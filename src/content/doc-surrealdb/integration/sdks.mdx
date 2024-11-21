@@ -9,25 +9,27 @@ import Boxes from "@components/boxes/Boxes.astro";
 import IconBox from "@components/boxes/IconBox.astro";
 import Image from "@components/Image.astro";
 
-import LightRust from "@img/light/rust.png";
-import LightJavaScript from "@img/light/javascript.png";
-import LightTypescript from "@img/light/typescript.png";
-import LightPython from "@img/light/python.png";
-import LightNodejs from "@img/light/nodejs.png";
-import LightDotnet from "@img/light/dotnet.png";
-import LightGolang from "@img/light/golang.png";
-import LightJava from "@img/light/java.png";
-import LightPhp from "@img/light/php.png";
+import LightDotnet from "@img/icon/light/dotnet.png";
+import LightGolang from "@img/icon/light/golang.png";
+import LightJava from "@img/icon/light/java.png";
+import LightJavaScript from "@img/icon/light/javascript.png";
+import LightNodejs from "@img/icon/light/nodejs.png";
+import LightPhp from "@img/icon/light/php.png";
+import LightPython from "@img/icon/light/python.png";
+import LightRust from "@img/icon/light/rust.png";
+import LightTypescript from "@img/icon/light/typescript.png";
+import LightWasm from "@img/icon/light/webassembly.png";
 
-import DarkRust from "@img/rust-icon.png";
-import DarkJavaScript from "@img/javascript-icon.png";
-import DarkTypescript from "@img/typescript.png";
-import DarkPython from "@img/python-icon.png";
-import DarkNodejs from "@img/node-icon.png";
-import DarkDotnet from "@img/dotnet-icon.png";
-import DarkGolang from "@img/golang-icon.png";
-import DarkJava from "@img/java-icon.png";
-import DarkPhp from "@img/php-icon.png";
+import DarkDotnet from "@img/icon/dark/dotnet.png";
+import DarkGolang from "@img/icon/dark/golang.png";
+import DarkJava from "@img/icon/dark/java.png";
+import DarkJavaScript from "@img/icon/dark/javascript.png";
+import DarkNodejs from "@img/icon/dark/nodejs.png";
+import DarkPhp from "@img/icon/dark/php.png";
+import DarkPython from "@img/icon/dark/python.png";
+import DarkRust from "@img/icon/dark/rust.png";
+import DarkTypescript from "@img/icon/dark/typescript.png";
+import DarkWasm from "@img/icon/dark/webassembly.png";
 
 # SDKs
 
@@ -46,7 +48,7 @@ SurrealDB supports a number of methods for connecting to the database and perfor
     <IconBox
         title="JavaScript"
         status="available"
-        href="/docs/sdk/javascript/core/initialization"
+        href="/docs/sdk/javascript"
         icon={{
                 light: LightJavaScript,
                 dark: DarkJavaScript,
@@ -55,19 +57,10 @@ SurrealDB supports a number of methods for connecting to the database and perfor
     <IconBox
         title="TypeScript"
         status="available"
-        href="/docs/sdk/javascript/core/initialization"
+        href="/docs/sdk/javascript"
         icon={{
                 light: LightTypescript,
                 dark: DarkTypescript,
-        }}
-    />
-    <IconBox
-        title="Python"
-        status="available"
-        href="/docs/sdk/python"
-        icon={{
-                light: LightPython,
-                dark: DarkPython,
         }}
     />
     <IconBox
@@ -80,12 +73,21 @@ SurrealDB supports a number of methods for connecting to the database and perfor
         }}
     />
     <IconBox
-        title=".NET"
+        title="WebAssembly"
         status="available"
-        href="/docs/sdk/dotnet"
+        href="/docs/sdk/javascript/engines/wasm"
         icon={{
-                light: LightDotnet,
-                dark: DarkDotnet,
+                light: LightWasm,
+                dark: DarkWasm,
+        }}
+    />
+    <IconBox
+        title="Java"
+        status="available"
+        href="/docs/sdk/java"
+        icon={{
+                light: LightJava,
+                dark: DarkJava,
         }}
     />
     <IconBox
@@ -98,12 +100,21 @@ SurrealDB supports a number of methods for connecting to the database and perfor
         }}
     />
     <IconBox
-        title="Java"
-        status="available"
-        href="/docs/sdk/java"
+        title="Python"
+        status="coming soon"
+        href="/docs/sdk/python"
         icon={{
-                light: LightJava,
-                dark: DarkJava,
+                light: LightPython,
+                dark: DarkPython,
+        }}
+    />
+    <IconBox
+        title=".NET"
+        status="available"
+        href="/docs/sdk/dotnet"
+        icon={{
+                light: LightDotnet,
+                dark: DarkDotnet,
         }}
     />
     <IconBox

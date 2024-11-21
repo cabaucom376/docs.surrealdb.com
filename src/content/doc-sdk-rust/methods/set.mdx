@@ -1,8 +1,8 @@
 ---
 sidebar_position: 16
 sidebar_label: set
-title: Rust | SDKs | Integration
-description: The .set() method assigns a value as a parameter for this connection.
+title: Set Method in Rust | Rust SDK | Integration | SurrealDB
+description: The .set() method for the SurrealDB Rust SDK assigns a value as a parameter for this connection.
 ---
 
 # `set()`
@@ -15,7 +15,7 @@ Assigns a value as a parameter for this connection.
 db.set(key, value)
 ```
 
-This is equivalent to using a [`LET`](https://surrealdb.com/docs/surrealql/statements/let) statement in SurrealQL, such as this one.
+This is equivalent to using a [`LET`](/docs/surrealql/statements/let) statement in SurrealQL, such as this one.
 
 ```surql
 LET $name = {
@@ -99,3 +99,7 @@ async fn main() -> surrealdb::Result<()> {
     Ok(())
 }
 ```
+
+### See also
+
+* [.set() method on Docs.rs](https://docs.rs/surrealdb/latest/surrealdb/struct.Surreal.html#method.set)
